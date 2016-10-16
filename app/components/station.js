@@ -3,7 +3,8 @@ import {
     View,
     Text,
     Image,
-    StyleSheet
+    StyleSheet,
+    TouchableHighlight
 } from 'react-native';
 import { getTransportImage } from '../lib/helpers';
 
@@ -53,19 +54,26 @@ function renderProducts(products) {
     });
 }
 
+function press() {
+    console.log("preeeueuueue");
+}
+
 const Station = (station) => {
     const products = station.products.toString().split('');
     return (
-        <View style={styles.container}>
-            <View style={styles.left}>
-                <Text>{station.name}</Text>
-                {renderProducts(products)}
+        <TouchableHighlight onPress={() => press()}>
+            <View style={styles.container}>
+                <View style={styles.left}>
+                    <Text>{station.name}</Text>
+                    {renderProducts(products)}
+                </View>
+                <View style={styles.distanceContainer}>
+                    <Text style={styles.distance}>{station.dist}</Text>
+                    <Text style={styles.meters}>m</Text>
+                </View>
             </View>
-            <View style={styles.distanceContainer}>
-                <Text style={styles.distance}>{station.dist}</Text>
-                <Text style={styles.meters}>m</Text>
-            </View>
-        </View>
+        </TouchableHighlight>
+        
     )
 }
 

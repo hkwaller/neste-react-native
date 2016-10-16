@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 import { connect } from 'react-redux';
-import Spinner from 'react-native-loading-spinner-overlay';
 import {
     View, 
     ListView,
@@ -24,7 +23,7 @@ const styles = StyleSheet.create({
   },
   backgroundImage: {
     flex: 1,
-    resizeMode: 'contain',
+    resizeMode: 'stretch',
     width: null,
     height: null,
   }
@@ -72,6 +71,17 @@ class Home extends Component {
                     {enableHighAccuracy: true, timeout: 20000, maximumAge: 1000}
                 );
     }
+    _renderSeparator(sectionID, rowID, adjacentRowHighlighted) {
+        return (
+        <View
+            key={`${sectionID}-${rowID}`}
+            style={{
+                height: adjacentRowHighlighted ? 4 : 1,
+                backgroundColor: adjacentRowHighlighted ? '#3B5998' : '#CCCCCC',
+            }}
+        />
+        );
+    }
     render() {
         return (
             <Image source={require('../images/background.png')} style={styles.backgroundImage}>
@@ -87,8 +97,8 @@ class Home extends Component {
                         style={styles.container}
                         dataSource={this.state.dataSource}
                         renderRow={station => <Station {...station} />}
+                        renderSeparator={this._renderSeparator}
                     />
-                    <Spinner visible={this.state.searching} />
                 </View>
             </Image>
         );
