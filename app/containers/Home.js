@@ -49,10 +49,6 @@ class Home extends Component {
         return Object.keys(this.props.stations).map(key => this.props.stations[key])
     }
 
-    refresh() {
-        this.getStationsFromLocation();
-    }
-    
     getStationsFromLocation() {
         this.setState({
             searching: true
@@ -91,7 +87,7 @@ class Home extends Component {
                         refreshControl={
                             <RefreshControl
                                 refreshing={this.state.searching}
-                                onRefresh={() => this.refresh()}
+                                onRefresh={() => this.getStationsFromLocation()}
                             />
                             }
                         style={styles.container}

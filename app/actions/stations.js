@@ -11,10 +11,9 @@ export function setStations({stations}) {
 export function getStations(lat, lng) {
     return (dispatch, getState) => {
         const params = [
-            `originCoordLong=${lng}`,
-            `originCoordLat=${lat}`,
-            `maxNo=10`,
-            `format=json`
+            `originCoordLong=10.7482477`,
+            `originCoordLat=59.9123514`,
+            `maxNo=10`
         ].join('&');
 
         return Api.get(`/location.nearbystops?${params}`).then(res => {

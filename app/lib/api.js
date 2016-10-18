@@ -16,7 +16,7 @@ class Api {
 
   static xhr(route, params, verb) {
     const base_url = "http://apidev.reiseinfo.no/openapi/proxy";
-    const url = `${base_url}${route}&accessId=${access_id}`;
+    const url = `${base_url}${route}&accessId=${access_id}&format=json`;
 
     let options = Object.assign({ method: verb }, params ? { body: JSON.stringify(params) } : null );
     options.headers = Api.headers()
