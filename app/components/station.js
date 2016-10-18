@@ -82,10 +82,6 @@ function renderProducts(products) {
     return parsed;
 }
 
-function press() {
-    console.log("preeeueuueue");
-}
-
 const Station = (station) => {
     return (
         <TouchableHighlight onPress={() => press()}>

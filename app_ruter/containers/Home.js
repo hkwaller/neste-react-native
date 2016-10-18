@@ -12,24 +12,6 @@ import {
 } from 'react-native';
 import Station from '../components/station';
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    marginTop: 40,
-  },
-  searching: {
-      flex: 1,
-      alignItems: 'center',
-      justifyContent: 'center',
-  },
-  backgroundImage: {
-    flex: 1,
-    resizeMode: 'stretch',
-    width: null,
-    height: null,
-  }
-});
-
 class Home extends Component {
     constructor(props) {
         super(props)
@@ -70,14 +52,23 @@ class Home extends Component {
     }
     _renderSeparator(sectionID, rowID, adjacentRowHighlighted) {
         return (
-        <View
-            key={`${sectionID}-${rowID}`}
-            style={{
-                height: adjacentRowHighlighted ? 4 : 1,
-                backgroundColor: adjacentRowHighlighted ? '#3B5998' : '#CCCCCC',
-            }}
-        />
+            <View
+                key={`${sectionID}-${rowID}`}
+                style={{
+                    height: adjacentRowHighlighted ? 4 : 1,
+                    backgroundColor: adjacentRowHighlighted ? '#3B5998' : '#CCCCCC',
+                }}
+            />
         );
+    }
+    _renderSectionHeader(sectionData, sectionID) {
+        return (
+            <View
+                key={`${sectionID}`}
+                style={styles.sectionHeader}>
+                <Text style={styles.sectionHeaderTitle}>Alle</Text>
+            </View>
+        )
     }
     _pressRow(rowID) {
         console.log("presusuu")
@@ -106,12 +97,42 @@ class Home extends Component {
                             )
                         }}
                         renderSeparator={this._renderSeparator}
+                        renderSectionHeader={this._renderSectionHeader}
                     />
                 </View>
             </Image>
         );
     }
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    marginTop: 40,
+  },
+  searching: {
+      flex: 1,
+      alignItems: 'center',
+      justifyContent: 'center',
+  },
+  backgroundImage: {
+    flex: 1,
+    resizeMode: 'stretch',
+    width: null,
+    height: null,
+  },
+  sectionHeader: {
+    height: 30,
+    backgroundColor: 'rgb(245,245,245)',
+    paddingLeft: 10,
+    justifyContent: 'center',
+    borderBottomWidth: 0.5,
+    borderBottomColor: '#CCCCCC'
+  },
+  sectionHeaderTitle: {
+    color: 'rgb(88,89,93)'
+  }
+});
 
 function mapStateToProps(state) {
     return {
