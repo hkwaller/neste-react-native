@@ -11,11 +11,12 @@ import {
     StatusBar
 } from 'react-native';
 import Station from '../components/station';
+import { bindActionCreators } from 'redux';
+import { ActionCreators } from '../actions';
 
 class Home extends Component {
     constructor(props) {
         super(props)
-
         const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
 
         this.state = {
@@ -36,7 +37,6 @@ class Home extends Component {
         this.setState({
             searching: true
         });
-
         navigator.geolocation.getCurrentPosition(
                 (position) => {
                     this.props.getStations(position.coords.latitude, position.coords.longitude).then(res => {
@@ -134,10 +134,14 @@ const styles = StyleSheet.create({
   }
 });
 
+function mapDispatchToProps(dispatch) {
+  return bindActionCreators(ActionCreators, dispatch);
+}
+
 function mapStateToProps(state) {
     return {
         stations: state.stations
     }
 }
 
-export default connect(mapStateToProps)(Home);
+export default connect(mapStateToProps, mapDispatchToProps)(Home);

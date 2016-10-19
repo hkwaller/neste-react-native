@@ -1,4 +1,3 @@
-export const SET_SEARCHED_STATIONS = 'SET_SEARCHED_STATIONS';
 export const SET_STATIONS = 'SET_STATIONS';
 
 // Navigation

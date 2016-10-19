@@ -3,11 +3,12 @@ import * as types from '../actions/types';
 import { NavigationExperimental, StatusBar } from 'react-native';
 
 const {
+    CardStack: NavigationCardStack,
     StateUtils: NavigationStateUtils
-} = NavigationExperimental;
+} = NavigationExperimental
 
 export const navigationState = createReducer({ index: 0, routes: [
-    { key: 'Stations' },
+    { key: 'Home' },
     { key: 'Departures' }
 ]}, {
     [types.NAVIGATION_FORWARD](state, action) {
@@ -17,3 +18,9 @@ export const navigationState = createReducer({ index: 0, routes: [
         return NavigationStateUtils.back(state);
     }
 });
+
+export const navigationParams = createReducer({}, {
+    [types.NAVIGATION_FORWARD](state, action) {
+        return action.state;
+    }
+})
